@@ -1,6 +1,6 @@
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
+ *   Rodrigo Rejas / Section 002
  *
  *   Note, additional comments provided throughout source code is
  *   for educational purposes.
@@ -105,7 +105,7 @@ class BloomFilter {
      * Below implements a 64-bit Linear Congruential Generator (LCG). It uses 
      * a table of 256 random values indexed by successive bytes in the data, 
      * and recommends a multiple suitable for an LCG with a modulus of 2^64,
-     * which is effectively what we have when we multiple using 64-bit long.
+     * which is effectively what we have when we multiply using 64-bit long.
      *
      * The value of HMULT is found to be a good practice with 64-bit LCG. It 
      * has roughly half of its bits set and is 'virtually' prime (it is 
@@ -224,7 +224,16 @@ class BloomFilter {
         // this class on available methods. You can also see how method 'add'
         // in this class uses the object.
 
-        return false;
+        // Check each hash
+        for (int n = 0; n < noHashes; n++) {
+            long hc = hashCode(s, n);
+            int bitNo = (int) (hc) & this.hashMask;
+
+            // Return false
+            if (!data.get(bitNo))
+                return false;
+        }
+        return true;
     }
 
 
