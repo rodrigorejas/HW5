@@ -65,18 +65,20 @@ class ProblemSolutions {
 
         // ADD YOUR CODE HERE
 
+        if (array == null || array.length == 0 || k <= 0 || k > array.length)
+            return -1;
+
         PriorityQueue<Integer> pq = new PriorityQueue<>();
 
-        // Add elements
         for (int num : array) {
             pq.offer(num);
             if (pq.size() > k)
                 pq.poll();
         }
-        return pq.peek();
 
+        Integer result = pq.peek();
+        return (result != null) ? result : -1;
     }
-
 
     /**
      * Method: sort2Arrays
