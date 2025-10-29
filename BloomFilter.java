@@ -229,7 +229,6 @@ class BloomFilter {
             long hc = hashCode(s, n);
             int bitNo = (int) (hc) & this.hashMask;
 
-            // Return false
             if (!data.get(bitNo))
                 return false;
         }
